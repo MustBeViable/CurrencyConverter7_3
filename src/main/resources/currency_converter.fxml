@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="524.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CurrencyController">
+   <top>
+      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="438.66663106282556" minWidth="10.0" percentWidth="10.0" prefWidth="438.66663106282556" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="438.66663106282556" minWidth="10.0" percentWidth="20.0" prefWidth="438.66663106282556" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="365.9999643961588" minWidth="10.0" percentWidth="8.75" prefWidth="54.66670227050781" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="365.0000305175781" minWidth="10.0" percentWidth="8.75" prefWidth="42.00003560384107" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="306.9999694824219" minWidth="10.0" percentWidth="8.75" prefWidth="36.33330281575513" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="259.9999694824219" minWidth="10.0" percentWidth="8.75" prefWidth="47.000030517578125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" percentWidth="8.75" prefWidth="55.333363850911496" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="178.3333740234375" minWidth="10.0" percentWidth="8.75" prefWidth="45.66666666666663" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.3333740234375" minWidth="0.0" prefWidth="0.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.66666666666663" minWidth="10.0" percentWidth="8.75" prefWidth="90.66666666666663" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="17.0" prefWidth="109.0" text="Convert">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Button fx:id="usd" mnemonicParsing="false" onAction="#convFromUsd" text="USD" GridPane.columnIndex="2">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="eur" mnemonicParsing="false" onAction="#convFromEur" text="EUR" GridPane.columnIndex="3">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="gbp" mnemonicParsing="false" onAction="#convFromGbp" text="GBP" GridPane.columnIndex="4">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="jpy" mnemonicParsing="false" onAction="#convFromJpy" text="JPY" GridPane.columnIndex="5">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="chf" mnemonicParsing="false" onAction="#convFromChf" text="CHF" GridPane.columnIndex="6">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="cad" mnemonicParsing="false" onAction="#convFromCad" text="CAD" GridPane.columnIndex="7">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="aud" mnemonicParsing="false" onAction="#convFromAud" text="AUD" GridPane.columnIndex="8">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="sgd" mnemonicParsing="false" onAction="#convFromSgd" text="SGD" GridPane.columnIndex="9">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <TextField fx:id="convertableValue" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+   </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="toUsd" mnemonicParsing="false" onAction="#convertToUsd" text="To USD">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="toEur" mnemonicParsing="false" onAction="#convertToEur" text="To EUR">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="toGbp" mnemonicParsing="false" onAction="#convertToGbp" text="To GBP">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="toJpy" mnemonicParsing="false" onAction="#convertToJpy" text="To JPY ">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="toChf" mnemonicParsing="false" onAction="#convertToChf" text="To CHF">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="toCad" mnemonicParsing="false" onAction="#convertToCad" text="To CAD">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="toAud" mnemonicParsing="false" onAction="#convertToAud" text="To AUD">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="toSgd" mnemonicParsing="false" onAction="#convertToSgd" text="To SGD">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.0" minWidth="10.0" percentWidth="50.0" prefWidth="222.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="511.0" minWidth="10.0" percentWidth="50.0" prefWidth="478.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="117.99999237060547" minHeight="10.0" percentHeight="26.0" prefHeight="117.99999237060547" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="160.0" minHeight="10.0" percentHeight="26.0" prefHeight="142.00000762939453" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="234.0" minHeight="10.0" prefHeight="234.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER_RIGHT" prefHeight="118.0" prefWidth="342.0" text="Conversion rate:">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" prefHeight="118.0" prefWidth="344.0" text="Converted:" GridPane.rowIndex="1">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label fx:id="convRate" alignment="CENTER" prefHeight="116.0" prefWidth="345.0" GridPane.columnIndex="1">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="convValue" alignment="CENTER" prefHeight="118.0" prefWidth="347.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
