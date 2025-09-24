@@ -62,6 +62,7 @@ public class Currency {
             case CAD -> rateToCad;
             case AUD -> rateToAud;
             case SGD -> rateToSgd;
+            default -> 0.0;
         };
     }
 

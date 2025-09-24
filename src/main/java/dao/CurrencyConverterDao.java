@@ -3,13 +3,8 @@ package dao;
 import entity.*;
 import jakarta.persistence.EntityManager;
 
-import datasource.MariaDbConnection;
 import model.CurrencyCode;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 public class CurrencyConverterDao {
@@ -50,9 +45,15 @@ public class CurrencyConverterDao {
     public Currency getConvercionRate(CurrencyCode code) {
         try {
             EntityManager em = datasource.MariaDbJpaConnection.getInstance();
-            em.getTransaction().begin();
-            Currency curr = em.find(Currency.class, code.toString());
-            return curr;
+            Currency curr = em.createQuery(
+                    "select c from Currency c where c.currencyCode = :code",
+                    Currency.class).setParameter("code", code).getResultStream().findFirst().orElse(null);
+            if (curr != null) {
+                return curr;
+            } else {
+                System.out.println(code.toString());
+                return null;
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

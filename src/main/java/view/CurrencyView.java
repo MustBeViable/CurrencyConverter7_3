@@ -8,18 +8,22 @@ import javafx.stage.Stage;
 
 public class CurrencyView extends Application {
 
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/currency_converter.fxml"));
+
 
         if (fxmlLoader == null) {
             throw new IllegalStateException("FXML not found on classpath");
         }
-        Parent root = fxmlLoader.load();
-
-        stage.setScene(new Scene(root));
-        stage.setTitle("Muistio");
-        stage.show();
+        try {
+            Parent root = fxmlLoader.load();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Currency converter");
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void main(String[] args) {

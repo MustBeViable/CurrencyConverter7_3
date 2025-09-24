@@ -3,10 +3,21 @@ package controller;
 
 import dao.CurrencyConverterDao;
 import entity.Currency;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.CurrencyCode;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CurrencyController {
     CurrencyConverterDao dao = new CurrencyConverterDao();
@@ -14,39 +25,53 @@ public class CurrencyController {
     @FXML private TextField convertableValue;
     @FXML private Label convRate;
     @FXML private Label convValue;
+    @FXML private ComboBox<CurrencyCode> cBoxFrom, cBoxTo;
+    @FXML private final ObservableList<CurrencyCode> currencyList = FXCollections.observableArrayList();
 
-    private CurrencyCode from = CurrencyCode.EUR;     // <-- enum, ei String
 
-    // FROM-napit:
-    @FXML private void convFromUsd() { from = CurrencyCode.USD; }
-    @FXML private void convFromEur() { from = CurrencyCode.EUR; }
-    @FXML private void convFromGbp() { from = CurrencyCode.GBP; }
-    @FXML private void convFromJpy() { from = CurrencyCode.JPY; }
-    @FXML private void convFromChf() { from = CurrencyCode.CHF; }
-    @FXML private void convFromCad() { from = CurrencyCode.CAD; }
-    @FXML private void convFromAud() { from = CurrencyCode.AUD; }
-    @FXML private void convFromSgd() { from = CurrencyCode.SGD; }
+    @FXML
+    private void initialize() {
+        List<Currency> list = dao.findAll();
+        List<CurrencyCode> currencyCodes = new ArrayList<>();
+        for (Currency c : list) {
+            currencyCodes.add(c.getCurrencyCode());
+        }
+        currencyList.setAll(currencyCodes);
+        cBoxFrom.setItems(currencyList);
+        cBoxTo.setItems(currencyList);
+    }
 
-    // TO-napit:
-    @FXML private void convertToUsd() { convertTo(CurrencyCode.USD); }
-    @FXML private void convertToEur() { convertTo(CurrencyCode.EUR); }
-    @FXML private void convertToGbp() { convertTo(CurrencyCode.GBP); }
-    @FXML private void convertToJpy() { convertTo(CurrencyCode.JPY); }
-    @FXML private void convertToChf() { convertTo(CurrencyCode.CHF); }
-    @FXML private void convertToCad() { convertTo(CurrencyCode.CAD); }
-    @FXML private void convertToAud() { convertTo(CurrencyCode.AUD); }
-    @FXML private void convertToSgd() { convertTo(CurrencyCode.SGD); }
 
-    private void convertTo(CurrencyCode to) {
+    @FXML
+    private void convert() {
         String amountStr = convertableValue.getText();
         double amount = parseAmount(amountStr);
 
-        Currency rates = dao.getConvercionRate(from);
-        double rate = rates.rateTo(to);
+        Currency curr = dao.getConvercionRate(cBoxFrom.getValue());
+        CurrencyCode to = cBoxTo.getValue();
+        CurrencyCode from = cBoxFrom.getValue();
+
+        double rate = curr.rateTo(to);
         double result = amount * rate;
 
         convRate.setText(String.format("%s to %s: %.6f", from, to, rate));
         convValue.setText(String.format("%.2f", result));
+    }
+
+    @FXML
+    private void addCurrency(){
+        FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("/new_currency.fxml"));
+
+        try {
+            Parent newRoot = fxmlLoader2.load();
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(newRoot));
+            newStage.setTitle("Add currency");
+            newStage.showAndWait();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private double parseAmount(String s) {
