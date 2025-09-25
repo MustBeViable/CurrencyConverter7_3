@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.CurrencyCode;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +30,11 @@ public class CurrencyController {
 
     @FXML
     private void initialize() {
+        createUpdateControlBoxes();
+    }
+
+
+    private void createUpdateControlBoxes() {
         List<Currency> list = dao.findAll();
         List<CurrencyCode> currencyCodes = new ArrayList<>();
         for (Currency c : list) {
@@ -40,7 +44,6 @@ public class CurrencyController {
         cBoxFrom.setItems(currencyList);
         cBoxTo.setItems(currencyList);
     }
-
 
     @FXML
     private void convert() {
@@ -68,6 +71,7 @@ public class CurrencyController {
             newStage.setScene(new Scene(newRoot));
             newStage.setTitle("Add currency");
             newStage.showAndWait();
+            createUpdateControlBoxes();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
