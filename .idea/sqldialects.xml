@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/src/main/SQL_Scripts/currencyconvetrer.sql" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/SQL_Scripts/currencyconvetrer2.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/src/main/SQL_Scripts/queries.sql" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/data.sql" dialect="MariaDB" />
   </component>
 </project>

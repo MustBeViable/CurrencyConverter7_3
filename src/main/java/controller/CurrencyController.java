@@ -2,7 +2,9 @@ package controller;
 
 
 import dao.CurrencyConverterDao;
+import dao.TransactionDao;
 import entity.Currency;
+import entity.Transaction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,6 +22,7 @@ import java.util.List;
 
 public class CurrencyController {
     CurrencyConverterDao dao = new CurrencyConverterDao();
+    TransactionDao tDao = new TransactionDao();
 
     @FXML private TextField convertableValue;
     @FXML private Label convRate;
@@ -50,11 +53,14 @@ public class CurrencyController {
         String amountStr = convertableValue.getText();
         double amount = parseAmount(amountStr);
 
-        Currency curr = dao.getConvercionRate(cBoxFrom.getValue());
+        Currency currFrom = dao.getConvercionRate(cBoxFrom.getValue());
+        Currency currTo = dao.getConvercionRate(cBoxTo.getValue());
         CurrencyCode to = cBoxTo.getValue();
         CurrencyCode from = cBoxFrom.getValue();
 
-        double rate = curr.rateTo(to);
+        tDao.persist(new Transaction(amount, currFrom, currTo));
+
+        double rate = currFrom.rateTo(to);
         double result = amount * rate;
 
         convRate.setText(String.format("%s to %s: %.6f", from, to, rate));

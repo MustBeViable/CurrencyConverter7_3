@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS currencyconverter;
-CREATE DATABASE currencyconverter;
-USE currencyconverter;
+DROP DATABASE IF EXISTS currencyconverter2;
+CREATE DATABASE currencyconverter2;
+USE currencyconverter2;
 
 DROP TABLE IF EXISTS currency;
 
@@ -52,6 +52,7 @@ VALUES
                          rate_to_aud   = VALUES(rate_to_aud),
                          rate_to_sgd   = VALUES(rate_to_sgd);
 
-DROP USER IF EXISTS 'appuser'@'localhost';
-CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'password';
-GRANT SELECT, INSERT ON currencyconverter.* TO 'appuser'@'localhost';
+DROP USER IF EXISTS 'appuser2'@'localhost';
+CREATE USER 'appuser2'@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT,INSERT,UPDATE,DELETE ON currencyconverter2.* TO 'appuser2'@'localhost';
+GRANT CREATE, DROP ON currencyconverter2.* TO 'appuser2'@'localhost';
