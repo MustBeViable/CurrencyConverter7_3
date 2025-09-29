@@ -54,5 +54,5 @@ VALUES
 
 DROP USER IF EXISTS 'appuser2'@'localhost';
 CREATE USER 'appuser2'@'localhost' IDENTIFIED BY 'password';
-GRANT SELECT,INSERT,UPDATE,DELETE ON currencyconverter2.* TO 'appuser2'@'localhost';
+GRANT SELECT,INSERT,UPDATE,DELETE,ALTER ON currencyconverter2.* TO 'appuser2'@'localhost';
 GRANT CREATE, DROP ON currencyconverter2.* TO 'appuser2'@'localhost';
